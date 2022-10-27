@@ -1,4 +1,4 @@
 export interface AppResponse<T> {
-  status: number;
+  statusCode: number;
   data: T;
 }

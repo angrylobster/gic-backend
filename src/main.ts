@@ -1,4 +1,6 @@
+import { ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
+import { AppExceptionFilter } from './app.filters';
 import {
   AppLoggingInterceptor,
   AppResponseBodyInterceptor,
@@ -11,6 +13,12 @@ async function bootstrap() {
     new AppLoggingInterceptor(),
     new AppResponseBodyInterceptor(),
   );
+  app.useGlobalPipes(
+    new ValidationPipe({
+      transform: true,
+    }),
+  );
+  app.useGlobalFilters(new AppExceptionFilter());
   await app.listen(3000);
 }
 bootstrap();

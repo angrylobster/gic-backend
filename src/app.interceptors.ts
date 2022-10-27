@@ -13,11 +13,14 @@ export class AppLoggingInterceptor implements NestInterceptor {
   private logger = new Logger();
 
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
+    const startTimestamp = Date.now();
     return next.handle().pipe(
       map((value) => {
         this.logger.debug(
           JSON.stringify(value),
-          context.switchToHttp().getRequest().route?.path,
+          `${context.switchToHttp().getRequest().route?.path} ${
+            Date.now() - startTimestamp
+          }ms`,
         );
         return value;
       }),
@@ -35,7 +38,7 @@ export class AppResponseBodyInterceptor<T>
   ): Observable<AppResponse<T>> {
     return next.handle().pipe(
       map((data) => ({
-        status: context.switchToHttp().getResponse().statusCode,
+        statusCode: context.switchToHttp().getResponse().statusCode,
         data,
       })),
     );

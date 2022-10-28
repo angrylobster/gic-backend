@@ -1,6 +1,5 @@
 import {
   ArgumentsHost,
-  BadRequestException,
   Catch,
   HttpException,
   HttpStatus,

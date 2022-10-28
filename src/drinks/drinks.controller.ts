@@ -1,4 +1,4 @@
-import { Controller, Get, Query, UseInterceptors } from '@nestjs/common';
+import { Controller, Get, Query } from '@nestjs/common';
 import { DrinkDto, DrinksQueryDto } from './drinks.interfaces';
 import { DrinksService } from './drinks.service';
 

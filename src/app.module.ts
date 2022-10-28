@@ -4,14 +4,26 @@ import { DrinksModule } from './drinks/drinks.module';
 import { CafesModule } from './cafes/cafes.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { EmployeesModule } from './employees/employees.module';
+import { ConfigModule } from '@nestjs/config';
+import { MongoConfigModule } from './config/mongo-config.module';
+import { MongoConfigService } from './config/mongo-config.service';
 import { SeedModule } from './seed/seed.module';
 
 @Module({
   imports: [
-    DrinksModule,
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
     CafesModule,
-    MongooseModule.forRoot('mongodb://localhost', { dbName: 'gic-backend' }),
+    DrinksModule,
     EmployeesModule,
+    MongooseModule.forRootAsync({
+      imports: [MongoConfigModule],
+      useFactory: async (mongoConfigService: MongoConfigService) => ({
+        uri: await mongoConfigService.getMongoUri(),
+      }),
+      inject: [MongoConfigService],
+    }),
     SeedModule,
   ],
   controllers: [AppController],

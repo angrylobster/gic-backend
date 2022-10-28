@@ -22,7 +22,7 @@ export class Employee {
   })
   _id: string;
 
-  @Prop({ type: String, ref: 'Cafe', unique: true })
+  @Prop({ type: String, ref: 'Cafe' })
   cafe: Cafe;
 }
 

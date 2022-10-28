@@ -29,7 +29,7 @@ export class Cafe {
   })
   _id: string;
 
-  @Prop({ type: [String], ref: 'Employee', unique: true })
+  @Prop({ type: [String], ref: 'Employee' })
   employees: Employee[];
 }
 

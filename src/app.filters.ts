@@ -1,5 +1,6 @@
 import {
   ArgumentsHost,
+  BadRequestException,
   Catch,
   HttpException,
   HttpStatus,
@@ -8,6 +9,10 @@ import {
 import { BaseExceptionFilter } from '@nestjs/core';
 import { AxiosError } from 'axios';
 import { Request, Response } from 'express';
+
+interface ExceptionResponse {
+  message: string | string[];
+}
 
 @Catch()
 export class AppExceptionFilter extends BaseExceptionFilter {
@@ -42,6 +47,15 @@ export class AppExceptionFilter extends BaseExceptionFilter {
   }
 
   private computeMessage(exception: Error | HttpException | AxiosError) {
+    if (exception instanceof HttpException) {
+      const response = exception.getResponse();
+      if (typeof response === 'string') return response;
+      const exceptionResponse = response as ExceptionResponse;
+      if (typeof exceptionResponse.message === 'string')
+        return exceptionResponse.message;
+      const messages = exceptionResponse.message as string[];
+      return messages.join(', ');
+    }
     if (exception.name === AxiosError.name)
       return (exception as AxiosError)?.response?.data;
     return exception.message || HttpStatus.INTERNAL_SERVER_ERROR;

@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Lola's Cafe",
+    "description": "Burgers, pastas & breakfast dishes with a modern, gourmet twist offered in a laid-back atmosphere.",
+    "logo": "https://lh5.googleusercontent.com/p/AF1QipNGUixWm_FSOBMaKTh1fZHKAwMBwfZvl5-d5y9C=w408-h272-k-no",
+    "location": "Kovan"
+  },
+  {
+    "name": "The Bread Shop",
+    "description": "This is a bread shop",
+    "logo": "https://lh5.googleusercontent.com/p/AF1QipN6pEU4xGe9WVcA19Ppo5Kro4Szetuc5DlsP4lk=w408-h306-k-no",
+    "location": "Kovan"
+  },
+  {
+    "name": "The Plain Jane",
+    "description": "Nice neighbourhood cafe which sells Swiss rolls, scones and other baked goods.",
+    "logo": "https://lh5.googleusercontent.com/p/AF1QipMsB5sibDY_8_9XKcyjRFsZ1ddS2vXGmsP3csTP=w408-h306-k-no",
+    "location": "Serangoon"
+  }
+]

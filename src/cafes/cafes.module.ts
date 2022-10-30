@@ -4,6 +4,7 @@ import { Cafe, CafeSchema } from './cafes.schema';
 import { CafesController } from './cafes.controller';
 import { CafesService } from './cafes.service';
 import { Employee, EmployeeSchema } from '../employees/employee.schema';
+import { EmployeesService } from '../employees/employees.service';
 
 @Module({
   imports: [
@@ -21,6 +22,6 @@ import { Employee, EmployeeSchema } from '../employees/employee.schema';
     ]),
   ],
   controllers: [CafesController],
-  providers: [CafesService],
+  providers: [CafesService, EmployeesService],
 })
 export class CafesModule {}

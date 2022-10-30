@@ -1,4 +1,5 @@
 import { Body, Controller, Get, Param, Post, Query } from '@nestjs/common';
+import { EmployeesService } from '../employees/employees.service';
 import {
   AddEmployeeDto,
   CreateCafeDto,
@@ -6,26 +7,34 @@ import {
 } from './cafes.interfaces';
 import { CafesService } from './cafes.service';
 
-@Controller('cafes')
+@Controller()
 export class CafesController {
-  constructor(private readonly cafeService: CafesService) {}
+  constructor(
+    private readonly cafeService: CafesService,
+    private readonly employeeService: EmployeesService,
+  ) {}
 
-  @Get('/')
+  @Get('/cafes')
   findAll(@Query() query: FindCafeQueryDto) {
     return this.cafeService.findAll(query);
   }
 
-  @Post('/')
+  @Post('/cafe')
   createOne(@Body() payload: CreateCafeDto) {
     return this.cafeService.createOne(payload);
   }
 
-  @Get('/:id')
+  @Get('/cafes/employees')
+  getEmployees() {
+    return this.employeeService.getAllEmployees();
+  }
+
+  @Get('/cafe/:id')
   findById(@Param('id') id: string) {
     return this.cafeService.findById(id);
   }
 
-  @Post('/employee')
+  @Post('/cafe/employee')
   addEmployeeToCafe(@Body() payload: AddEmployeeDto) {
     return this.cafeService.addEmployeeToCafe(payload);
   }

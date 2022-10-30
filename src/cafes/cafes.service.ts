@@ -36,10 +36,6 @@ export class CafesService {
         },
       },
     ]);
-    // return this.cafeModel
-    //   .find(query)
-    //   .populate('employees', null, Employee.name)
-    //   .sort({ employees: -1 });
   }
 
   async createOne(payload: any) {
